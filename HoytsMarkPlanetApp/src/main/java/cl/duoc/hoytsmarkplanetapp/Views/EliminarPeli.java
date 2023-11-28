@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package cl.duoc.hoytsmarkplanetapp.Views;
 
 import cl.duoc.hoytsmarkplanetapp.Services.PeliculaService;
@@ -33,14 +30,14 @@ private PeliculaService peliculaService = new PeliculaService();
         cargarDatos();
     }
 private void cargarDatos() {
-        // Obtener todas las películas del servicio
+        // Capturar lista de las películas
         List<PeliculaDTO> peliculas = peliculaService.CapturarPeliculas();
 
         // Limpiar la tabla
         DefaultTableModel model = (DefaultTableModel) jTablaE.getModel();
         model.setRowCount(0);
 
-        // Llenar la tabla con las películas
+        // Llenar tabla EliminarPeli
         for (PeliculaDTO pelicula : peliculas) {
             Object[] rowData = {
                 pelicula.getId(),
@@ -66,7 +63,6 @@ private void cargarDatos() {
         jLabel2 = new javax.swing.JLabel();
         jID = new javax.swing.JTextField();
         jbtnEliminar = new javax.swing.JButton();
-        jbtnActualizar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTablaE = new javax.swing.JTable();
 
@@ -91,13 +87,6 @@ private void cargarDatos() {
         jbtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnEliminarActionPerformed(evt);
-            }
-        });
-
-        jbtnActualizar.setText("Actualizar");
-        jbtnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnActualizarActionPerformed(evt);
             }
         });
 
@@ -129,9 +118,7 @@ private void cargarDatos() {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jID, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
-                        .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(jbtnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane2)
         );
@@ -144,7 +131,6 @@ private void cargarDatos() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnActualizar)
                     .addComponent(jbtnEliminar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,11 +144,6 @@ private void cargarDatos() {
     
     }//GEN-LAST:event_jIDActionPerformed
 
-    private void jbtnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnActualizarActionPerformed
-             cargarDatos(); 
-        System.out.println("Tabla de Peliculas Actualizada");// TODO add your handling code here:
-    }//GEN-LAST:event_jbtnActualizarActionPerformed
-
     private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
      int idPeliculaAEliminar;
     try {
@@ -172,13 +153,13 @@ private void cargarDatos() {
         return;
     }
 
-    // Llama al método eliminarPelicula del servicio
+    // metodo eliminarPelicula
     peliculaService.eliminarPelicula(idPeliculaAEliminar);
     JOptionPane.showMessageDialog(null,"Pelicula Eliminada");
-    // Muestra un mensaje de éxito
+   
     System.out.println("Película con ID " + idPeliculaAEliminar + " eliminada con éxito");
 
-    // Actualiza la tabla después de la eliminación
+    
     cargarDatos();   // TODO add your handling code here:
     }//GEN-LAST:event_jbtnEliminarActionPerformed
 
@@ -189,7 +170,6 @@ private void cargarDatos() {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTablaE;
-    private javax.swing.JButton jbtnActualizar;
     private javax.swing.JButton jbtnEliminar;
     // End of variables declaration//GEN-END:variables
 }

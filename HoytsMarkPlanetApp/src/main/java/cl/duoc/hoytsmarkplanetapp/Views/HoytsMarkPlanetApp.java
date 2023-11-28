@@ -9,9 +9,6 @@ import cl.duoc.hoytsmarkplanetapp.DAO.ConexionDB;
  */
 public class HoytsMarkPlanetApp extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HoytsMarkPlanetApp
-     */
     public HoytsMarkPlanetApp() {
         initComponents();
       
@@ -37,7 +34,6 @@ public class HoytsMarkPlanetApp extends javax.swing.JFrame {
         ModificarPeli = new javax.swing.JMenuItem();
         EliminarPeli = new javax.swing.JMenuItem();
         ListarPeli = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -68,6 +64,11 @@ public class HoytsMarkPlanetApp extends javax.swing.JFrame {
         jMenu1.add(CrearPeli);
 
         ModificarPeli.setText("Modificar Pelicula");
+        ModificarPeli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarPeliActionPerformed(evt);
+            }
+        });
         jMenu1.add(ModificarPeli);
 
         EliminarPeli.setText("Eliminar Pelicula");
@@ -87,9 +88,6 @@ public class HoytsMarkPlanetApp extends javax.swing.JFrame {
         jMenu1.add(ListarPeli);
 
         jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("01010101");
-        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -133,6 +131,15 @@ public class HoytsMarkPlanetApp extends javax.swing.JFrame {
         ventanatres.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_EliminarPeliActionPerformed
 
+    private void ModificarPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarPeliActionPerformed
+        ModificarPeli ventanacuatro = new ModificarPeli();
+        DesktopPane.add(ventanacuatro);
+        ventanacuatro.setVisible(true);
+        ventanacuatro.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ModificarPeliActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -175,7 +182,6 @@ public class HoytsMarkPlanetApp extends javax.swing.JFrame {
     private javax.swing.JMenuItem ListarPeli;
     private javax.swing.JMenuItem ModificarPeli;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables

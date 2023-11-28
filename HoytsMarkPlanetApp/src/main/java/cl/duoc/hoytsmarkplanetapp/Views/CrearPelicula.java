@@ -156,7 +156,7 @@ public class CrearPelicula extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          
-// Limpiar datos ingresados
+// Limpiar datos 
         jTitulo.setText("");    
         jDirector.setText("");  
         jAño.setText("");       
@@ -166,28 +166,29 @@ public class CrearPelicula extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-          // Obtener los valores de tus campos (jTitulo, jDirector, jAño, jDuracion, jGenero)
+          // Capturar los valores  texts
     String titulo = jTitulo.getText();
     String director = jDirector.getText();
     int anio = Integer.parseInt(jAño.getText());
     int duracion = Integer.parseInt(jDuracion.getText());
     String genero = jGenero.getText();
 
-    // Crear una instancia de PeliculaDTO
+    //Instancia 
     PeliculaDTO peliculaDTO = new PeliculaDTO(0, titulo, director, anio, duracion, genero);
 
-    // Crear una instancia de PeliculaService y agregar la película a la base de datos
+    // Llamo a  PeliculaService y agrego la película a la base de datos mysql
     PeliculaService peliculaService = new PeliculaService();
     peliculaService.agregarPelicula(peliculaDTO);
     JOptionPane.showMessageDialog(null,"Pelicula Ingresada Correctamente");
-    // Limpiar los campos del formulario
+    
+    // Limpiar los campos
     limpiarFormulario();
     
 }
  
 
 
-// Método para limpiar los campos del formulario
+// Método para limpiar 
     private void limpiarFormulario() {
     jTitulo.setText("");
     jDirector.setText("");

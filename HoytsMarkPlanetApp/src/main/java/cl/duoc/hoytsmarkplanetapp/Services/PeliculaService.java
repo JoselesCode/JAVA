@@ -31,6 +31,7 @@ public class PeliculaService {
         }
     }
 
+    ///////////////////Crear
     public void agregarPelicula(PeliculaDTO peliculaDTO) {
        try {
         String sqlInsert = "INSERT INTO MOVIE (titulo, director, anio, duracion, genero) " +
@@ -49,7 +50,8 @@ public class PeliculaService {
     } catch (SQLException ex) {
         System.out.println("Error al guardar la película: " + ex.getMessage());
     }
-} // Implementación para agregar una película...
+} 
+    ///////////////////Capturar Pelis para ListarPeli
     
     public List<PeliculaDTO> CapturarPeliculas() {
         List<PeliculaDTO> peliculas = new ArrayList<>();
@@ -77,17 +79,76 @@ public class PeliculaService {
 
     return peliculas;
     }
-    
-    
-    
-    
-    
-    
-    
-    public void modificarPelicula(PeliculaDTO peliculaDTO) {
-        // Implementación para modificar una película...
+   
+    ///////////////////capturar para modificarPeli
+ public List<String> obtenerTitulosPeliculas() {
+    List<String> titulos = new ArrayList<>();
+
+    try {
+        String sqlSelect = "SELECT titulo FROM MOVIE";
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(sqlSelect)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                titulos.add(resultSet.getString("titulo"));
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println("Error al obtener los títulos de las películas: " + ex.getMessage());
     }
 
+    return titulos;
+}   
+  
+ ///////////////////Capturar informacion
+  public PeliculaDTO obtenerInformacionPelicula(String titulo) {
+    try {
+        String sqlSelect = "SELECT * FROM MOVIE WHERE titulo = ?";
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(sqlSelect)) {
+            preparedStatement.setString(1, titulo);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                PeliculaDTO pelicula = new PeliculaDTO();
+                pelicula.setId(resultSet.getInt("id"));
+                pelicula.setTitulo(resultSet.getString("titulo"));
+                pelicula.setDirector(resultSet.getString("director"));
+                pelicula.setAnio(resultSet.getInt("anio"));
+                pelicula.setDuracion(resultSet.getInt("duracion"));
+                pelicula.setGenero(resultSet.getString("genero"));
+
+                return pelicula;
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println("Error al obtener la información de la película: " + ex.getMessage());
+    }
+
+    return null;
+}  
+   
+  ///////////////////Modificar
+public void modificarPelicula(PeliculaDTO peliculaDTO) {
+    try {
+        String sqlUpdate = "UPDATE MOVIE SET titulo=?, director=?, anio=?, duracion=?, genero=? WHERE id=?";
+
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(sqlUpdate)) {
+            preparedStatement.setString(1, peliculaDTO.getTitulo());
+            preparedStatement.setString(2, peliculaDTO.getDirector());
+            preparedStatement.setInt(3, peliculaDTO.getAnio());
+            preparedStatement.setInt(4, peliculaDTO.getDuracion());
+            preparedStatement.setString(5, peliculaDTO.getGenero());
+            preparedStatement.setInt(6, peliculaDTO.getId());
+
+            preparedStatement.executeUpdate();
+            System.out.println("Película modificada con éxito");
+        }
+    } catch (SQLException ex) {
+        System.out.println("Error al modificar la película: " + ex.getMessage());
+    }
+}    
+    
+///////////////////Eliminar
     public void eliminarPelicula(int idPelicula) {
      try {
         String sqlDelete = "DELETE FROM MOVIE WHERE id = ?";
@@ -105,10 +166,9 @@ public class PeliculaService {
         }
     } catch (SQLException ex) {
         System.out.println("Error al eliminar la película: " + ex.getMessage());
-    }   // Implementación para eliminar una película...
+    }   
     }
 
-    // Otros métodos según sea necesario...
 }
   
     

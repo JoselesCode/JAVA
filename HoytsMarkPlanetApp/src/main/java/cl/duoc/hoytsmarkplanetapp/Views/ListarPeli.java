@@ -20,14 +20,13 @@ private PeliculaService peliculaService = new PeliculaService();
         cargarDatos();
     }
     private void cargarDatos() {
-        // Obtener todas las películas del servicio
+        // Capturar películas de servicess
         List<PeliculaDTO> peliculas = peliculaService.CapturarPeliculas();
-
         // Limpiar la tabla
         DefaultTableModel model = (DefaultTableModel) jTablaLista.getModel();
         model.setRowCount(0);
 
-        // Llenar la tabla con las películas
+        // Recorrido de datos de las películas
         for (PeliculaDTO pelicula : peliculas) {
             Object[] rowData = {
                 pelicula.getId(),
